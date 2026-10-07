@@ -1,0 +1,434 @@
+/* ==========================================================
+   HOJA DE ESTILOS - SIMULADOR DE VOTO ELECTRÓNICO
+   Colegio San Juan Bautista - La Salle
+   ========================================================== */
+
+/* --- 1. CONFIGURACIÓN GENERAL Y VARIABLES --- */
+:root {
+    --color-primario: #003366;       /* Azul institucional La Salle */
+    --color-secundario: #D4AF37;     /* Dorado institucional */
+    --color-acento: #28a745;         /* Verde para confirmación/éxito */
+    --color-fondo: #f4f7f9;          /* Gris claro de fondo */
+    --color-tarjeta: #ffffff;        /* Blanco para contenidos */
+    --color-texto: #333333;          /* Gris oscuro para lectura */
+    --color-texto-suave: #666666;    /* Gris medio */
+    --color-borde: #e0e0e0;          /* Gris claro para bordes */
+    
+    --fuente-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --sombra-suave: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --sombra-hover: 0 8px 20px rgba(0, 0, 0, 0.15);
+    --transicion: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--fuente-principal);
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --- 2. CONTROL DE PANTALLAS (PASO A PASO) --- */
+.seccion-paso {
+    display: none; /* Oculta secciones inactivas */
+    background: var(--color-tarjeta);
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: var(--sombra-suave);
+    margin-bottom: 2rem;
+    border-left: 6px solid var(--color-primario);
+}
+
+.seccion-paso.activa {
+    display: block; /* Muestra solo la pantalla activa */
+}
+
+/* --- 3. ENCABEZADO CON LOGO A LA DERECHA Y ESPACIADO --- */
+header {
+    background-color: var(--color-primario);
+    color: #ffffff;
+    padding: 1.5rem 2rem;
+    border-bottom: 5px solid var(--color-secundario);
+}
+
+.contenedor-header {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Distribuye títulos a la izquierda y logo a la derecha */
+    gap: 2.5rem; /* Separación amplia entre texto e imagen */
+}
+
+.titulos-header {
+    text-align: left;
+    flex: 1;
+}
+
+header .institucion {
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-secundario);
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.logo-colegio {
+    height: 75px; /* Tamaño adecuado para el logo */
+    width: auto;
+    border-radius: 6px;
+    margin-left: 1.5rem; /* Margen de seguridad para separarlo del texto */
+    object-fit: contain;
+}
+
+/* --- 4. CONTENEDOR PRINCIPAL --- */
+.contenedor-principal {
+    max-width: 1000px;
+    width: 90%;
+    margin: 2rem auto;
+    flex: 1;
+}
+
+.seccion-paso h2 {
+    color: var(--color-primario);
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+    border-bottom: 2px solid var(--color-fondo);
+    padding-bottom: 0.5rem;
+}
+
+.instrucciones {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 1.2rem 1.5rem;
+    margin: 1.5rem 0;
+    border: 1px solid var(--color-borde);
+}
+
+.instrucciones h3 {
+    color: var(--color-primario);
+    margin-bottom: 0.5rem;
+}
+
+.instrucciones ol {
+    margin-left: 1.2rem;
+}
+
+.instrucciones li {
+    margin-bottom: 0.4rem;
+}
+
+/* --- 5. FORMULARIO DE IDENTIFICACIÓN --- */
+.nota-advertencia {
+    font-style: italic;
+    color: #d9534f;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+}
+
+.grupo-campo {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.grupo-campo label {
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: var(--color-texto);
+}
+
+.grupo-campo input,
+.grupo-campo select {
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--color-borde);
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: var(--transicion);
+}
+
+.grupo-campo input:focus,
+.grupo-campo select:focus {
+    outline: none;
+    border-color: var(--color-primario);
+    box-shadow: 0 0 0 3px rgba(0, 51, 102, 0.15);
+}
+
+/* --- 6. GRID DE CANDIDATOS Y TARJETAS --- */
+.grid-candidatos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.8rem;
+    margin: 2rem 0;
+}
+
+.tarjeta-candidato {
+    background: #ffffff;
+    border: 1px solid var(--color-borde);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: var(--transicion);
+}
+
+.tarjeta-candidato:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--sombra-hover);
+    border-color: var(--color-primario);
+}
+
+.tarjeta-candidato img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    object-position: top;
+    border-bottom: 3px solid var(--color-secundario);
+}
+
+.info-candidato {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.numero-lista {
+    background-color: var(--color-secundario);
+    color: #000;
+    font-weight: bold;
+    padding: 0.28rem 0.7rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    align-self: flex-start;
+    margin-bottom: 0.6rem;
+}
+
+.info-candidato h3 {
+    color: var(--color-primario);
+    font-size: 1.25rem;
+    margin-bottom: 0.2rem;
+    line-height: 1.3;
+}
+
+.lema {
+    font-style: italic;
+    color: var(--color-texto-suave);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.info-candidato h4 {
+    font-size: 0.95rem;
+    margin-bottom: 0.4rem;
+    color: var(--color-texto);
+}
+
+.info-candidato ul {
+    margin-left: 1.2rem;
+    font-size: 0.9rem;
+    color: var(--color-texto-suave);
+    margin-bottom: 1.5rem;
+    flex: 1;
+}
+
+.opcion-seleccion {
+    background-color: #f0f4f8;
+    padding: 0.8rem;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    cursor: pointer;
+    transition: var(--transicion);
+}
+
+.opcion-seleccion:hover {
+    background-color: #e2ebf3;
+}
+
+.opcion-seleccion input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--color-primario);
+}
+
+.opcion-seleccion label {
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--color-primario);
+    width: 100%;
+}
+
+/* --- 7. BOTONES Y ACCIONES --- */
+.btn-principal,
+.btn-secundario,
+.btn-finalizar {
+    display: inline-block;
+    padding: 0.85rem 1.8rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--transicion);
+    text-align: center;
+}
+
+.btn-principal {
+    background-color: var(--color-primario);
+    color: #ffffff;
+}
+
+.btn-principal:hover {
+    background-color: #002244;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 51, 102, 0.3);
+}
+
+.btn-secundario {
+    background-color: #6c757d;
+    color: #ffffff;
+}
+
+.btn-secundario:hover {
+    background-color: #5a6268;
+}
+
+.btn-finalizar {
+    background-color: var(--color-acento);
+    color: #ffffff;
+}
+
+.btn-finalizar:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
+}
+
+.acciones-formulario {
+    margin-top: 1.5rem;
+    text-align: right;
+}
+
+/* --- 8. RESUMEN Y CONFIRMACIÓN --- */
+.resumen-voto {
+    background-color: #f8f9fa;
+    border: 1px dashed var(--color-primario);
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 1.5rem 0;
+}
+
+.resumen-voto p {
+    margin-bottom: 0.8rem;
+    font-size: 1.05rem;
+}
+
+.resumen-voto span {
+    color: var(--color-primario);
+}
+
+.botones-confirmacion {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 1.5rem;
+}
+
+/* --- 9. PANTALLA DE RESULTADO / ÉXITO --- */
+.caja-exito {
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+.icono-exito {
+    width: 80px;
+    height: 80px;
+    background-color: #d4edda;
+    color: var(--color-acento);
+    font-size: 2.5rem;
+    font-weight: bold;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem auto;
+    border: 3px solid var(--color-acento);
+}
+
+.caja-exito h2 {
+    color: var(--color-acento);
+    border-bottom: none;
+}
+
+.subtexto {
+    color: var(--color-texto-suave);
+    margin-bottom: 1.8rem;
+}
+
+/* --- 10. PIE DE PÁGINA (FOOTER) --- */
+footer {
+    background-color: var(--color-primario);
+    color: #ffffff;
+    text-align: center;
+    padding: 1.2rem;
+    font-size: 0.9rem;
+    margin-top: auto;
+}
+
+/* --- 11. ADAPTACIÓN A PANTALLAS PEQUEÑAS (RESPONSIVE) --- */
+@media (max-width: 650px) {
+    .contenedor-header {
+        flex-direction: column-reverse; /* El logo pasará arriba en celulares */
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .titulos-header {
+        text-align: center;
+    }
+
+    .logo-colegio {
+        margin-left: 0;
+        height: 65px;
+    }
+
+    header h1 {
+        font-size: 1.4rem;
+    }
+
+    .seccion-paso {
+        padding: 1.5rem;
+    }
+
+    .grid-candidatos {
+        grid-template-columns: 1fr;
+    }
+
+    .botones-confirmacion {
+        flex-direction: column;
+    }
+
+    .btn-principal,
+    .btn-secundario,
+    .btn-finalizar {
+        width: 100%;
+    }
+}

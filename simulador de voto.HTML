@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Voto Electrónico - Colegio San Juan Bautista</title>
+    <!-- Vinculación con la hoja de estilos CSS -->
+    <link rel="stylesheet" href="CSS/simulador de voto.CSS">
+</head>
+<body>
+
+    <!-- Encabezado Principal con Logo a la Derecha -->
+    <header>
+        <div class="contenedor-header">
+            <div class="titulos-header">
+                <p class="institucion">Colegio San Juan Bautista de La Salle</p>
+                <h1>Simulador de Voto Electrónico Estudiantil</h1>
+            </div>
+            <img src="ING/imagenes/elecciones/SAN JUAN.png" alt="Logo Colegio San Juan Bautista - La Salle" class="logo-colegio">
+        </div>
+    </header>
+
+    <main class="contenedor-principal">
+
+        <!-- PASO 1: PANTALLA DE BIENVENIDA -->
+        <section id="paso-bienvenida" class="seccion-paso activa">
+            <h2>¡Bienvenido al Proceso Electoral Estudiantil!</h2>
+            <p>Esta es una herramienta digital para practicar el voto electrónico de manera segura, transparente y responsable.</p>
+            <div class="instrucciones">
+                <h3>Instrucciones:</h3>
+                <ol>
+                    <li>Ingresa tus datos ficticios de estudiante (código, grado y sección).</li>
+                    <li>Revisa la lista de candidatos y sus datos.</li>
+                    <li>Selecciona al candidato de tu preferencia.</li>
+                    <li>Confirma tu elección antes de emitir tu voto final.</li>
+                </ol>
+            </div>
+            <button type="button" class="btn-principal" onclick="irAPaso('paso-identificacion')">Iniciar Proceso de Votación</button>
+        </section>
+
+        <!-- PASO 2: IDENTIFICACIÓN FICTICIA -->
+        <section id="paso-identificacion" class="seccion-paso">
+            <h2>Identificación del Estudiante</h2>
+            <p class="nota-advertencia">Nota: Ingrese datos ficticios. No use datos personales reales.</p>
+            
+            <form id="form-identificacion" onsubmit="guardarIdentificacion(event)">
+                <div class="grupo-campo">
+                    <label for="codigo">Código de Estudiante (ficticio):</label>
+                    <input type="text" id="codigo" name="codigo" placeholder="Ej. EST-12345" required>
+                </div>
+
+                <div class="grupo-campo">
+                    <label for="grado">Grado:</label>
+                    <select id="grado" name="grado" required>
+                        <option value="">-- Seleccione Grado --</option>
+                        <option value="1er Año">1er Año de Secundaria</option>
+                        <option value="2do Año">2do Año de Secundaria</option>
+                        <option value="3er Año">3er Año de Secundaria</option>
+                        <option value="4to Año">4to Año de Secundaria</option>
+                        <option value="5to Año">5to Año de Secundaria</option>
+                    </select>
+                </div>
+
+                <div class="grupo-campo">
+                    <label for="seccion">Sección:</label>
+                    <select id="seccion" name="seccion" required>
+                        <option value="">-- Seleccione Sección --</option>
+                        <option value="A">A</option>
+                        <option value="B">B</option>
+                        <option value="C">C</option>
+                    </select>
+                </div>
+
+                <div class="acciones-formulario">
+                    <button type="submit" class="btn-principal">Continuar a Selección de Candidatos</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- PASO 3: CANDIDATOS Y SELECCIÓN -->
+        <section id="paso-candidatos" class="seccion-paso">
+            <h2>Elección de Candidato</h2>
+            <p>Conoce a las listas participantes y elige la opción de tu preferencia:</p>
+
+            <form id="form-votacion" onsubmit="guardarEleccion(event)">
+                <div class="grid-candidatos">
+
+                    <!-- Lista N° 1 -->
+                    <article class="tarjeta-candidato">
+                        <img src="ING/imagenes/elecciones/paolo.png" alt="Mathias Paolo Salcedo Orozco">
+                        <div class="info-candidato">
+                            <span class="numero-lista">Lista N° 1</span>
+                            <h3>Mathias Paolo Salcedo Orozco</h3>
+                            <p class="lema">"Escencia Sanjuanista"</p>
+                            
+                            <div class="detalles-candidato">
+                                <p><strong>Cargo:</strong> Alcalde Escolar</p>
+                                <p><strong>Grado:</strong> 4to de Secundaria</p>
+                            </div>
+
+                            <div class="opcion-seleccion">
+                                <input type="radio" id="cand1" name="candidato_seleccionado" value="Lista N° 1 - Mathias Paolo Salcedo Orozco" required>
+                                <label for="cand1">Votar por Lista 1</label>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Lista N° 2 -->
+                    <article class="tarjeta-candidato">
+                        <img src="ING/imagenes/elecciones/jose.png" alt="Jose David Segura Suni">
+                        <div class="info-candidato">
+                            <span class="numero-lista">Lista N° 2</span>
+                            <h3>Jose David Segura Suni</h3>
+                            <p class="lema">"Fuerza Sanjuanista"</p>
+                            
+                            <div class="detalles-candidato">
+                                <p><strong>Cargo:</strong> Alcalde Escolar</p>
+                                <p><strong>Grado:</strong> 4to de Secundaria</p>
+                            </div>
+
+                            <div class="opcion-seleccion">
+                                <input type="radio" id="cand2" name="candidato_seleccionado" value="Lista N° 2 - Jose David Segura Suni">
+                                <label for="cand2">Votar por Lista 2</label>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Lista N° 3 -->
+                    <article class="tarjeta-candidato">
+                        <img src="ING/imagenes/elecciones/wiki.png"Mauricio Jose Herrera Cornejo">
+                        <div class="info-candidato">
+                            <span class="numero-lista">Lista N° 3</span>
+                            <h3>Mauricio Jose Herrera Cornejo</h3>
+                            <p class="lema">"Sanjuan Unido"</p>
+                            
+                            <div class="detalles-candidato">
+                                <p><strong>Cargo:</strong> Alcalde Escolar</p>
+                                <p><strong>Grado:</strong> 4to de Secundaria</p>
+                            </div>
+
+                            <div class="opcion-seleccion">
+                                <input type="radio" id="cand3" name="candidato_seleccionado" value="Lista N° 3 - Mauricio Jose Herrera Cornejo">
+                                <label for="cand3">Votar por Lista 3</label>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+
+                <div class="acciones-formulario">
+                    <button type="submit" class="btn-principal">Revisar y Confirmar Voto</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- PASO 4: CONFIRMACIÓN -->
+        <section id="paso-confirmacion" class="seccion-paso">
+            <h2>Confirmación de Voto</h2>
+            <p>Por favor, revisa detalladamente tu elección antes de emitir tu voto definitivo:</p>
+            
+            <div class="resumen-voto">
+                <p><strong>Candidato / Lista Seleccionada:</strong> <span id="resumen-candidato">--</span></p>
+                <p><strong>Código de Estudiante:</strong> <span id="resumen-codigo">--</span></p>
+                <p><strong>Grado y Sección:</strong> <span id="resumen-grado-seccion">--</span></p>
+            </div>
+
+            <div class="botones-confirmacion">
+                <button type="button" class="btn-secundario" onclick="irAPaso('paso-candidatos')">Corregir Elección</button>
+                <button type="button" class="btn-finalizar" onclick="emitirVotoFinal()">Confirmar y Emitir Voto</button>
+            </div>
+        </section>
+
+        <!-- PASO 5: RESULTADO -->
+        <section id="paso-resultado" class="seccion-paso">
+            <div class="caja-exito">
+                <div class="icono-exito">✓</div>
+                <h2>Voto registrado correctamente</h2>
+                <p>Gracias por participar activamente en la jornada de elección estudiantil.</p>
+                <p class="subtexto">Tu voto ha sido procesado de forma confidencial.</p>
+                <button type="button" class="btn-principal" onclick="reiniciarSimulador()">Realizar otra Simulación</button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Pie de página -->
+    <footer>
+        <p>&copy; 2026 Colegio San Juan Bautista - La Salle | Simulador de Voto Electrónico</p>
+    </footer>
+
+    <!-- SCRIPT DE INTERACTIVIDAD -->
+    <script>
+        let datosEstudiante = {
+            codigo: '',
+            grado: '',
+            seccion: '',
+            candidato: ''
+        };
+
+        function irAPaso(idPaso) {
+            const secciones = document.querySelectorAll('.seccion-paso');
+            secciones.forEach(sec => sec.classList.remove('activa'));
+            document.getElementById(idPaso).classList.add('activa');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function guardarIdentificacion(event) {
+            event.preventDefault();
+            datosEstudiante.codigo = document.getElementById('codigo').value;
+            datosEstudiante.grado = document.getElementById('grado').value;
+            datosEstudiante.seccion = document.getElementById('seccion').value;
+            irAPaso('paso-candidatos');
+        }
+
+        function guardarEleccion(event) {
+            event.preventDefault();
+            const seleccion = document.querySelector('input[name="candidato_seleccionado"]:checked');
+            if (seleccion) {
+                datosEstudiante.candidato = seleccion.value;
+                document.getElementById('resumen-candidato').textContent = datosEstudiante.candidato;
+                document.getElementById('resumen-codigo').textContent = datosEstudiante.codigo;
+                document.getElementById('resumen-grado-seccion').textContent = datosEstudiante.grado + " - Sección " + datosEstudiante.seccion;
+                irAPaso('paso-confirmacion');
+            }
+        }
+
+        function emitirVotoFinal() {
+            irAPaso('paso-resultado');
+        }
+
+        function reiniciarSimulador() {
+            document.getElementById('form-identificacion').reset();
+            document.getElementById('form-votacion').reset();
+            datosEstudiante = { codigo: '', grado: '', seccion: '', candidato: '' };
+            irAPaso('paso-bienvenida');
+        }
+    </script>
+
+</body>
+</html>
